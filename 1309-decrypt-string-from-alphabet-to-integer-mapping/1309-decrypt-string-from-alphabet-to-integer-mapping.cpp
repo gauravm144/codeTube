@@ -12,7 +12,7 @@ public:
                 i--;
                 
                 ss=((s[i]-'0')*10)+s[i+1]-'0';
-                cout<<ss<<endl;
+                // cout<<ss<<endl;
                 ch='a'+ss-1;
                 s1=ch+s1;
                 continue;
@@ -20,7 +20,7 @@ public:
             ss=s[i]-'0';
             // cout<<ss<<endl;
             ch='a'+ss-1;
-            cout<<s[i]<<"  "<<ch<<endl;
+            // cout<<s[i]<<"  "<<ch<<endl;
             s1=ch+s1;
         }
         return s1;
