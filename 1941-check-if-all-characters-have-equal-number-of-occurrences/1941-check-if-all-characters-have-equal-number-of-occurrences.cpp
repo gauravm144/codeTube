@@ -11,7 +11,7 @@ public:
         }
         // for(int i=0;i<26;i++)
             // cout<<ar[i]<<endl;
-        cout<<max;
+        // cout<<max;
         for(int i=0;i<26;i++)
         {
             if(ar[i]!=0&&max!=ar[i])
