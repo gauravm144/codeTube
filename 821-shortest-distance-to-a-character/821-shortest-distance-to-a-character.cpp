@@ -1,45 +1,16 @@
 class Solution {
 public:
-    void op(vector<int> &vtk)
-    {
-          for(int i=0;i<vtk.size();i++)
-            cout<<vtk[i]<<" ";
-        cout<<endl;
-    }
     vector<int> shortestToChar(string s, char c) {
-        vector vtk(s.length(),0);
-        int pos=0;
-        
-        for(int i=s.length()-1;i>=0;i--)
-            if(s[i]==c)
-            {
-                pos=i;
-            }
-        for(int i=0;i<s.length();i++)
-        {
-            if(s[i]==c)
-            {
-                pos=i; 
-                continue;            
-            }
-            vtk[i]=abs(pos-i);
+     int n = s.size(), pos = -n;
+        vector<int> res(n, n);
+        for (int i = 0; i < n; ++i) {
+            if (s[i] == c) pos = i;
+            res[i] = i - pos;
         }
-        // op(vtk);
-        
-          for(int i=s.length()-1;i>=0;i--)
-        {
-            if(s[i]==c)
-            {
-                pos=i; 
-                continue;            
-            }
-            vtk[i]=min(vtk[i],abs(pos-i));
+        for (int i = pos - 1; i >= 0; --i) {
+            if (s[i] == c)  pos = i;
+            res[i] = min(res[i], pos - i);
         }
-        // op(vtk);
-        
-        // cout<<endl;
-        
-        
-        return vtk;
+        return res;   
     }
 };
