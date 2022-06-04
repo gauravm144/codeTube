@@ -27,28 +27,41 @@ class Solution
 {
     public:
     //Function to find the maximum profit and the number of jobs done.
-       static bool comp (Job a, Job b)
-       {
-     return a.profit > b.profit;
-       }
+    static bool comp1(Job arr1,Job arr2)
+    {return arr1.dead>arr2.dead;}
+    
+    static bool comp2(Job arr1,Job arr2)
+    {return arr1.profit>arr2.profit;}
+    
     vector<int> JobScheduling(Job arr[], int n) 
-    { 
-        // your code here
-         sort (arr, arr+n,comp);
-       vector<bool> vis(n,false); 
-       int jobcnt=0,maxprofit=0;
-       for (int i=0; i< n; i++){
-       for (int j=arr[i].dead-1; j>= 0; j--){
-         if (vis[j]) continue;
-         else{
-         vis[j]= true;
-         maxprofit+= arr[i].profit;
-         jobcnt++;
-         break;
-      }
-    }
-  }
-    return {jobcnt,maxprofit};
+    {
+        vector<int> vtk;
+        int count=0,prof=0;
+        sort(arr,arr+n,comp1);
+        // cout<<arr[0].dead;
+        vector<bool> ck(arr[0].dead,false);
+        sort(arr,arr+n,comp2);
+        int j=0;
+        for(int i=0;i<n;i++)
+        {
+            j=(arr[i].dead);
+            //   cout<<j<<endl;
+            while(j--)
+            {
+            if(ck[j]==false)
+            {
+                // cout<<"in"<<endl;
+                ck[j]=true;
+                count++;
+                prof+=arr[i].profit;
+                break;
+            }
+            }
+        }
+        vtk.push_back(count);
+        vtk.push_back(prof);
+        return vtk;
+        
     } 
 };
 
