@@ -8,32 +8,35 @@ class Solution
     public:
     //Function to find the maximum number of meetings that can
     //be performed in a meeting room.
+    static bool comp(pair<int,int> a,pair<int,int> b)
+    {
+        return a.second<b.second;
+    }
     int maxMeetings(int start[], int end[], int n)
     {
-    vector<pair<int,int>> vtk;
-    for(int i=0;i<n;i++)
-    {
-    vtk.push_back(make_pair(start[i],end[i]));
-    }
-    sort(vtk.begin(),vtk.end(),[&](auto &a,auto &b){return a.second < b.second;});
-    int count=1;
-    int i=0,j=1;
-    
-    while(j<n)
-    {
-        if(vtk[i].second<vtk[j].first)
+        // Your code here
+        int ans=0;
+        vector<pair<int,int>> vtk(n);
+        int a1=0,b1=0;
+        for(int i=0;i<n;i++)
         {
-        count++;
-        i=j;
-        j++;
-        // cout<<vtk[i].first<<"  "<<vtk[i].second<<endl;
+            vtk[i].first=start[i];
+            vtk[i].second=end[i];
+            // vtk.push_back(start[i],end[i]);
         }
-        else
+
+        sort(vtk.begin(),vtk.end(),comp);
+            a1=-1,b1=-1;
+        for(int i=0;i<n;i++)
         {
-            j++;
+            
+            // cout<<vtk[i].first<<"   "<<vtk[i].second<<endl;
+            if(vtk[i].first>b1){
+            ans++;
+            b1=vtk[i].second;}
+            // a1=vtk[i].first;
         }
-    }
-        return count;
+        return ans;
     }
 };
 
