@@ -30,8 +30,8 @@ public:
             else if(rowSum[i]==colSum[j])
             {
                 vtk[i][j]=rowSum[i];
-                colSum[j]-=rowSum[i];
-                rowSum[i]-=colSum[j];
+                colSum[j]=0;
+                rowSum[i]=0;
                 i++;
                 j++;
             }
