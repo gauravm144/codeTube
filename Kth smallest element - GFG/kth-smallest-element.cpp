@@ -13,23 +13,21 @@ class Solution{
     // l : starting index of the array i.e 0
     // r : ending index of the array i.e size-1
     // k : find kth smallest element and return using this function
-    int kthSmallest(int arr[], int l, int r, int k) {
+    int kthSmallest(int arr[], int l, int n, int k) {
         //code here
-        priority_queue<int> g;
-        for(int i=0;i<k;i++)
-        g.push(arr[i]);
-        // cout<<g.top()<<endl;
-        
-        for(int i=k;i<=r;i++)
+        priority_queue<int> q;
+        for(int i=l;i<k;i++)
+        q.push(arr[i]);
+        // cout<<n;
+        for(int i=k;i<=n;i++)
         {
-            if(g.top()>arr[i])
+            if(arr[i]<q.top())
             {
-                // cout<<g.top()<<endl;
-                g.pop();
-                g.push(arr[i]);
+                q.pop();
+                q.push(arr[i]);
             }
         }
-        return g.top();
+        return q.top();
     }
 };
 
