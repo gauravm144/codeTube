@@ -24,12 +24,12 @@ int main()
 // } Driver Code Ends
 
 
-void rotate(int arr[], int n)
+void rotate(int a[], int n)
 {
-    int t=arr[n-1];
-    for(int i=n-1;i>0;i--)
-    {
-        arr[i]=arr[i-1];
-    }
-    arr[0]=t;
+ int tmp=a[n-1];
+ for(int i=n-1;i>0;i--)
+ {
+     a[i]=a[i-1];
+ }
+ a[0]=tmp;
 }
