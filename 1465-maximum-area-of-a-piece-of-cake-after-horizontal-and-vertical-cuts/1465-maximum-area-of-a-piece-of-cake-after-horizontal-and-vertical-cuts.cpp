@@ -1,46 +1,35 @@
 class Solution {
 public:
-    long max(long a,long b)
+    int max(int a,int b)
     {
-        if(a>=b)
-            return a;
-        else 
-            return b;
+        return a>=b?a:b;
     }
-    int maxArea(int h, int w, vector<int>& hc, vector<int>& vc) {
-        sort(hc.begin(),hc.end());
-        sort(vc.begin(),vc.end());
+    int maxArea(int h, int w, vector<int>& hC, vector<int>& vC) {
         
-        long maxh=0;
-        if(hc.size()==1)
-        {
-            maxh=max(hc[0],h-hc[0]);
-            cout<<maxh;
-        }
-        else
-        for(long i=1;i<hc.size();i++)
-        {
-            maxh=max(maxh,hc[i]-hc[i-1]);
-        }
-        maxh=max(maxh,h-hc[hc.size()-1]);
-        maxh=max(maxh,hc[0]);
+        sort(hC.begin(),hC.end());
+        sort(vC.begin(),vC.end());
         
-        long maxv=0;
-        if(vc.size()==1)
+        long hmx=0;
+        
+        for(int i=1;i<hC.size();i++)
         {
-            maxv=max(vc[0],w-vc[0]);
+            hmx=max(hmx,hC[i]-hC[i-1]);
         }
-        else
-        for(long i=1;i<vc.size();i++)
+        hmx=max(hmx,hC[0]-0);
+        hmx=max(hmx,h-hC[hC.size()-1]);
+        
+        long vmx=0;
+        
+        for(int i=1;i<vC.size();i++)
         {
-            maxv=max(maxv,vc[i]-vc[i-1]);
+            vmx=max(vmx,vC[i]-vC[i-1]);
         }
-        maxv=max(maxv,w-vc[vc.size()-1]);
-        maxv=max(maxv,vc[0]);
-        long tmp=maxh*maxv;
-        long tt=pow(10,9);
-        tt+=7;
-        tmp=tmp%tt;
-        return (int)tmp;
+        vmx=max(vmx,vC[0]-0);
+        vmx=max(vmx,w-vC[vC.size()-1]);
+        
+        long res=hmx*vmx;
+        long ans=pow(10,9)+7;
+        ans=res%ans;
+        return (int)ans;
     }
 };
