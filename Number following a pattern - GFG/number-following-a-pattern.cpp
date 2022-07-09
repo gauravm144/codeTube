@@ -6,33 +6,38 @@ using namespace std;
 class Solution{   
 public:
     string printMinNumberForPattern(string S){
-     
-       // code here 
-       stack<int> stk;
-       int num=1;
-       int n=S.length();
-       string ans="";
-       for(int i=0;i<n;i++)
-       {
-            stk.push(num);
+        int num=0;
+        int n=S.length();
+        string res="";
+        stack<int> stk;
+        for(int i=0;i<n;i++)
+        {
             num++;
-           if(S[i]=='I')
-           {
-               while(stk.size()>0)
-               {
-                   ans+=to_string(stk.top());
-                   stk.pop();
-               }
-           }
-        
-       }
-       ans+=to_string(num);
-       while(stk.size()>0)
-               {
-                   ans+=to_string(stk.top());
-                   stk.pop();
-               }
-       return ans;
+            
+            if(S[i]=='D')
+            {
+             stk.push(num);   
+            }
+            else
+            {
+                res=res+(to_string(num));
+                 
+                while(stk.size()>0)
+                {
+                 res=res+to_string(stk.top());
+                 stk.pop();
+                }
+            }
+            
+        }
+        num++;
+        res=res+to_string(num);
+        while(stk.size()>0)
+        {
+            res=res+to_string(stk.top());
+            stk.pop();
+        }
+    return res;
     }
 };
 
