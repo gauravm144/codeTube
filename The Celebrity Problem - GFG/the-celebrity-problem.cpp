@@ -13,43 +13,38 @@ class Solution
     //Function to find if there is a celebrity in the party or not.
     int celebrity(vector<vector<int> >& M, int n) 
     {
-        // code here 
-        stack<int> stk;
-        for(int i=0;i<n;i++)
-        stk.push(i);
-        
-        for(int i=0;i<n&&stk.size()>1;i++)
-        {
-            int mai=stk.top();
-            stk.pop();
-            int isko=stk.top();
-            stk.pop();
-            if(M[mai][isko]==0)
-            {
-                stk.push(mai);
-            }
-            else
-            {
-                stk.push(isko);
-            }
-        }
-        // potential is stk.top
-        for(int j=0;j<n;j++)
-        {
-            if(M[stk.top()][j]!=0)
-            return -1;
-        }
-         for(int i=0;i<n;i++)
-        {
-            if(i==stk.top())
-            continue;
-            
-            if(M[i][stk.top()]!=1)
-            return -1;
-        }
-        
-        
-        return stk.top();
+      stack<int> stk;
+      for(int i=0;i<n;i++)
+      stk.push(i);
+      
+      while(stk.size()>1)
+      {
+          int a=stk.top();
+          stk.pop();
+          int b=stk.top();
+          stk.pop();
+          if(M[a][b]==1)
+          {
+              stk.push(b);
+          }
+          else
+          {
+              stk.push(a);
+          }
+      }
+      int pot=stk.top();
+      for(int i=0;i<n;i++)
+      if(M[pot][i]==1)
+      return -1;
+      
+      for(int i=0;i<n;i++)
+      if(i!=pot&&M[i][pot]==0)
+      return -1;
+      
+      
+      
+      return pot;
+      
     }
 };
 
