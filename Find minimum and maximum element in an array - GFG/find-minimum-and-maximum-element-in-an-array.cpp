@@ -21,18 +21,31 @@ int main() {
     return 0;
 }// } Driver Code Ends
 
-
+long long findmx(long long a[],long idx,long long n)
+{
+    if(idx==n-1)
+    return a[idx];
+    long long x=findmx(a,idx+1,n);
+    if(x>a[idx])
+    return x;
+    else
+    return a[idx];
+}
+long long findmn(long long a[],long idx,long long n)
+{
+    if(idx==n-1)
+    return a[idx];
+    long long x=findmn(a,idx+1,n);
+    if(x<a[idx])
+    return x;
+    else
+    return a[idx];
+}
 pair<long long, long long> getMinMax(long long a[], int n) {
-    pair<long,long> pr;
-    long long max=INT_MIN,min=INT_MAX;
-    for(long long i=0;i<n;i++)
-    {
-        if(a[i]>max)
-        max=a[i];
-        if(a[i]<min)
-        min=a[i];
-    }
-    pr=make_pair(min,max);
-    return pr;
-    
+ long long mx=findmx(a,0,n);   
+ long long mn=findmn(a,0,n);
+ pair<long,long> pr;
+ pr.first=mn;
+ pr.second=mx;
+ return pr;
 }
