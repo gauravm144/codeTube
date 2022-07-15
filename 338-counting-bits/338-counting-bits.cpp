@@ -1,12 +1,18 @@
 class Solution {
 public:
     vector<int> countBits(int n) {
-        vector<int> DP(n+1,0);
-        DP[0]=0;
-       for(int i=1;i<=n;i++)
-       {
-           DP[i]=DP[i/2]+i%2;
-       }
-        return DP;
+     
+        vector<int> ans(n+1);
+        ans[0]=0;
+        if(n==0)
+            return ans;
+        ans[1]=1;
+        if(n==1)
+            return ans;
+        for(int i=2;i<=n;i++)
+        {
+            ans[i]=ans[i/2]+i%2;
+        }
+        return ans;
     }
 };
