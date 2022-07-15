@@ -9,9 +9,8 @@ public:
         {
             for(int i=1;i<k;i++)
             {
-                int tmp=q.front();
+                q.push(q.front());
                 q.pop();
-                q.push(tmp);
             }
             q.pop();
         }
