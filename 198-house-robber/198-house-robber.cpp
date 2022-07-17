@@ -1,23 +1,18 @@
 class Solution {
 public:
-    int find(vector<int>&nums,int n,vector<int>&dp)
-    {
-        if(n==0)
-        {
-            return nums[0];
-        }
-        if(n<0)
-            return 0;
-        if(dp[n]!=-1)
-            return dp[n];
-        
-    int s1=nums[n]+find(nums,n-2,dp);
-    int s2=0+find(nums,n-1,dp);
-        
-    return dp[n]=max(s1,s2);
-    }
+
     int rob(vector<int>& nums) {
         vector<int> dp(nums.size(),-1);
-        return find(nums,nums.size()-1,dp);
+        dp[0]=nums[0];
+        int s1=0,s2=0;
+        for(int i=1;i<nums.size();i++)
+        {
+            s1=dp[i-1];
+            s2=nums[i];
+            if(i>1)
+            s2+=dp[i-2];
+            dp[i]=max(s1,s2);
+        }
+        return dp[nums.size()-1];
     }
 };
