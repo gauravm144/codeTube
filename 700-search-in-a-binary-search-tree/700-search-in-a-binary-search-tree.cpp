@@ -11,8 +11,7 @@
  */
 class Solution {
 public:
-    TreeNode *ans=NULL;
-    void find(TreeNode* root, int val)
+    void find(TreeNode* root, int val,TreeNode* &ans)
     {
         if(root==NULL)
             return;
@@ -22,11 +21,12 @@ public:
             return;
         }
         
-        find(root->left,val);
-        find(root->right,val);
+        find(root->left,val,ans);
+        find(root->right,val,ans);
     }
     TreeNode* searchBST(TreeNode* root, int val) {
-      find(root, val);
+        TreeNode *ans=NULL;
+      find(root,val,ans);
         return ans;
     }
 };
