@@ -11,17 +11,22 @@
  */
 class Solution {
 public:
-    void POT(TreeNode* root,vector<int> &vtk)
-    {
-        if(root==NULL)
-            return;
-        vtk.push_back(root->val);
-        POT(root->left,vtk);
-        POT(root->right,vtk);
-    }
     vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> vtk;
-        POT(root,vtk);
-        return vtk;
+        vector<int> res;
+        if(root==NULL)
+            return res;
+        stack<TreeNode*> stk;
+        stk.push(root);
+        while(stk.size()>0)
+        {
+            TreeNode *tmp=stk.top();
+            stk.pop();
+            res.push_back(tmp->val);
+            if(tmp->right!=NULL)
+                stk.push(tmp->right);
+            if(tmp->left!=NULL)
+                stk.push(tmp->left);
+        }
+        return res;
     }
 };
