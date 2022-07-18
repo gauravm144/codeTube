@@ -11,18 +11,27 @@
  */
 class Solution {
 public:
-    void IOT(TreeNode* root,vector<int> &vtk)
-    {
-        if(root==NULL)
-            return;
-        IOT(root->left,vtk);
-        vtk.push_back(root->val);
-        IOT(root->right,vtk);
-    }
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> vtk;
-        IOT(root,vtk);
-        return vtk;
-        
+     vector<int> res;
+     TreeNode *tmp=root;
+     stack<TreeNode*> stk;
+        while(true)
+        {
+            if(tmp!=NULL)
+            {
+                stk.push(tmp);
+                tmp=tmp->left;
+            }
+            else
+            {
+                if(stk.size()==0)
+                    break;
+                tmp=stk.top();
+                stk.pop();
+                res.push_back(tmp->val);
+                tmp=tmp->right;
+            }
+        }
+        return res;
     }
 };
